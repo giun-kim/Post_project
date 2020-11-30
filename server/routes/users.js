@@ -1,5 +1,4 @@
 var express = require('express');
-const user = require('../models/user');
 var router = express.Router();
 var User = require('../models').User;
 var middlewares = require('./middlewares');

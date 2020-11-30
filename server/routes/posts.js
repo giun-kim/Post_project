@@ -1,8 +1,4 @@
 var express = require('express');
-const { route } = require('.');
-const app = require('../app');
-const user = require('../models/user');
-// const user = require('../models/user');
 
 var router = express.Router();
 
@@ -27,15 +23,6 @@ router.get('/list', function (req, res, next) {
       console.log('#!@#: ', posts)
       res.json(posts);
   })
-    // Post
-    //     .findAll({order:[['date', 'DESC'], ['id', 'DESC']]})
-    //     .then(posts => {
-    //         res.json(posts);
-    //     })
-    // Post.findAndCountAll()
-    // .then(posts => {
-    //           res.json(posts.count);
-    // })
 });
 
 router.post('/create', (req, res)=> {
@@ -80,7 +67,6 @@ router.get('/info/:id', (req, res)=>{
     .then(comments=>{
       res.json({post:post, comments:comments})
     })
-    // res.json({posts:result});
   })
 })
 
@@ -146,16 +132,6 @@ router.delete('/comment/delete/:id', (req, res)=>{
   })
 })
 router.get('/comment/:id', (req, res)=>{
-  // Comment.findAll({
-  //   where:{post_id:req.params.id},
-  //   order:[['date', 'DESC'], ['id', 'DESC']],
-  //   include:[
-  //     {
-  //       model:User,
-  //       attributes:['name']
-  //     }
-  //   ]
-  // })
   Comment.findAll({
     where:{post_id:req.params.id},
     order:[['date', 'DESC'], ['id', 'DESC']],

@@ -22,23 +22,6 @@ exports.isNotLoggedIn = (req, res, next) => {
     }
 }
 
-// exports.verifyToken = (req, res, next) => {
-//     try {
-//         req.decoded = jwt.verify(req.headers.authorization, process.env.JWT_SECRET);
-//         return next();
-//     } catch (err) {
-//         if (err.name === 'TokenExpiredError') {
-//             return res
-//                 .status(419)
-//                 .json({code: 419, msg: '유효하지 않은 토큰'})
-//         }
-
-//         return res
-//             .status(401)
-//             .json({code: 401, msg: '유효하지 않은 토큰'});
-//     }
-// };
-
 exports.passwordToHashing = (password, cb) => {
     console.log('passwordToHassing')
     console.log(password);

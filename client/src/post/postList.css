@@ -1,0 +1,75 @@
+
+table{
+    table-layout: fixed;
+    border-collapse: collapse;
+    width: 80%;
+    margin-left: 10%;
+    margin-right: 10%;
+}
+table, tr, th, td{
+    border-bottom: 1px solid gray;
+    text-align: center;
+    padding: 5px;
+}
+td:first-child{
+    width:10%;
+}
+td:nth-child(2){
+    width:50%;
+}
+td:nth-child(3){
+    width:20%
+}
+td:nth-child(4){
+    width:20%;
+}
+td:last-child{
+    width:10%;
+}
+tbody>tr:hover{
+    background-color: rgb(197, 195, 195);
+}
+thead{
+    border: 3px solid black;
+}
+.td_post_title{
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    
+}
+
+.new-post{
+    float: right;
+    justify-content: center;
+    align-items: center;
+    margin-top: 10px;
+    margin-right: 11vh;
+}
+
+.pagination-div{
+    justify-content: center;
+    display:flex;
+    align-items: center;
+    margin-top: 3vh;
+    margin-right: 5vh;
+}
+.pagination-div>ul li{
+    list-style: none;
+    margin : 1vh;
+    float:left;
+}
+.pagination-div>ul>li>a{
+    text-decoration: none;
+}
+.pagination-div>ul>li:hover{
+    text-decoration: underline black;
+}
+.pagination-div>ul>li a:focus{
+    color:rgb(255, 0, 0); 
+    text-decoration: underline rgb(255, 0, 0);
+}
+
+.pagination-div>button:last-child{
+    margin-left: 4vh;
+}

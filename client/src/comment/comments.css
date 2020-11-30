@@ -1,0 +1,35 @@
+.comment-u-img{
+    vertical-align: top;
+}
+.comment-all-length{
+    font-size: 20px;
+}
+
+.comment-all-length-div{
+    margin: 0px auto;
+    width:50%;
+}
+.create-comment-div{
+    text-align: center;
+}
+.create-comment-button{
+    margin-left: 45%;
+}
+.comment-div{
+    margin: 0px auto;
+    width: 50%;
+}
+.comment-div>hr{
+    width:100%
+}
+.comment-u-id-span{
+    margin-left: 10px;
+}
+
+.comment-u-d-button{
+    margin-left: 45vh;
+}
+
+#comment-text{
+    white-space: pre-line;
+}

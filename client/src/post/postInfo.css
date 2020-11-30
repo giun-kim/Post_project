@@ -1,0 +1,73 @@
+.post_create_and_update_and_delete{
+    margin-top: 5vh;
+ }
+ .title{
+     display:flex;
+     flex-direction: row;
+     width:100%;
+     align-items:center;
+     justify-content: center;
+ }
+ .title>input{
+     margin-left: 1%;
+     width:52%;
+     height:3vh;
+ }
+ .title>input:focus{
+     background: rgb(221, 221, 221);
+ }
+ .title>label{
+     width:7%;
+     border:1px solid black;
+     height: 3vh;
+     text-align: center;
+     margin-left: 2%;
+ }
+ 
+ 
+ form{
+     display:flex;
+     flex-direction: column;
+     align-items:center;
+     justify-content: center;
+ }
+ .post{
+     width:60%;
+     height:50vh;
+     margin-left: 40px;
+     margin-top:10px
+ }
+ .post:focus{
+     background: rgb(221, 221, 221);
+ }
+ .button{
+     display:flex;
+     justify-content: center;
+     align-items: center;
+     margin-top: 10px;
+ }
+ 
+ .button>button{
+     width: 100px;
+     height: 25px;
+     margin-right: 5px;
+     color:black;
+     background: rgb(212, 212, 212);
+     border: 1px solid black;
+     box-shadow:1px 1px 3px 1px black;
+ 
+ }
+ button:hover{
+     color:white;
+     background: black;
+     box-shadow:1px 1px 3px 1px rgb(158, 158, 158);
+ }
+ 
+ 
+
+ .div-container{
+    display:flex;
+    flex-direction: column;
+    align-items:center;
+    justify-content: center;
+ }

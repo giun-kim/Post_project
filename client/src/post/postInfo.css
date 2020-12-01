@@ -13,9 +13,6 @@
      width:52%;
      height:3vh;
  }
- .title>input:focus{
-     background: rgb(221, 221, 221);
- }
  .title>label{
      width:7%;
      border:1px solid black;
@@ -23,7 +20,6 @@
      text-align: center;
      margin-left: 2%;
  }
- 
  
  form{
      display:flex;
@@ -36,9 +32,6 @@
      height:50vh;
      margin-left: 40px;
      margin-top:10px
- }
- .post:focus{
-     background: rgb(221, 221, 221);
  }
  .button{
      display:flex;

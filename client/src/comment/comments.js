@@ -7,7 +7,6 @@ function Comments(props) {
     const [CreateComment, setCreateComment] = useState('')
     const [Comments, setComments] = useState([])
     const [GetComments, setGetComments] = useState(false)
-
     useEffect(() => {
         setComments(props.comments)
     }, [])
@@ -63,7 +62,6 @@ function Comments(props) {
       
     }
     const comment_delete = (id)=>{
-        const body = 
         axios.delete('/post/comment/delete/'+id, )
         .then(res =>{
             setGetComments(true)

@@ -4,7 +4,7 @@ import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
 
 import Navigation from './nav/navigation';
 import PostListPage from './post/postListPage';
-import PostCreatePage from './post/postCreatePage';
+import PostCreateAndUpdatePage from './post/postCreateAndUpdatePage';
 import LoginPage from './user/loginPage';
 import PostInfoPage from './post/postInfoPage';
 import RegisterPage from './user/registerPage';
@@ -20,7 +20,8 @@ function App() {
                     <Switch>
                         <Route exact path="/" component={Auth(MainPage)}/>
                         <Route exact path="/post/list" component={Auth(PostListPage)}/>
-                        <Route exact path="/post/create" component={Auth(PostCreatePage)}/>
+                        <Route exact path="/post/create" component={Auth(PostCreateAndUpdatePage)}/>
+                        <Route exact path="/post/update/:id" component={Auth(PostCreateAndUpdatePage)}/>
                         <Route exact path="/post/info/:id" component={Auth(PostInfoPage)}/>
                         <Route exact path="/users/login" component={LoginPage}/>
                         <Route exact path="/users/register" component={RegisterPage}/>

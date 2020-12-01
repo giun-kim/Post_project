@@ -14,9 +14,11 @@ export default function (SpecificComponent, option = null, adminRoute = null) {
                     setData(res.data);
                 })
         }, [])
-        return(Data.length !== 0 && (
-                <SpecificComponent auth={Data}/>
-        ))
+
+        if(Data.length !==0 && option ===null){
+            return <SpecificComponent auth={Data}/>
+        }
+        return null
     }
 
     return AuthenticationCheck

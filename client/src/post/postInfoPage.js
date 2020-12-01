@@ -31,26 +31,7 @@ function PostInfoPage(props) {
     const changeComments = (comments)=> {
         setComments(comments)
     }
-    const onSubmitHandle = (e) => {
-        e.preventDefault();
-        let body = {
-            title: Title,
-            post: Post,
-            user_id: props.auth.id
-        }
-        axios
-            .post('/post/update/' + props.match.params.id, body)
-            .then(res => {
-                alert('수정 완료')
-                props
-                    .history
-                    .push('/post/list')
-            })
-            .catch(err => {
-                alert('error');
-            })
-        }
-    const cancleHandle = () => {
+    const onClickCancleHandle = () => {
         props
             .history
             .push('/post/list')
@@ -61,7 +42,12 @@ function PostInfoPage(props) {
     const titleChangeHandle = (e) => {
         setTitle(e.currentTarget.value)
     }
-    const deleteHandle = (e) => {
+    const onClickUpdateHandle =()=>{
+        props
+            .history
+            .push('/post/update/'+props.match.params.id, {title: Title, post:Post})
+    }
+    const onClcikDeleteHandle = (e) => {
         e.preventDefault();
         axios
             .delete('/post/delete/' + props.match.params.id)
@@ -76,11 +62,10 @@ function PostInfoPage(props) {
          IsLogin 
             ? (
                 <div className="container">
-                    <div className="div-form-container">
-                        <form onSubmit={onSubmitHandle}>
+                     <div className="div-container">
                             <div className="title">
                                 <label>제목</label>
-                                <input type="text" name="title" value={Title} onChange={titleChangeHandle}/>
+                                <input type="text" name="title" value={Title}readOnly="readOnly" onChange={titleChangeHandle}/>
                             </div>
                             <textarea className="post"
                                 name="post"
@@ -88,13 +73,14 @@ function PostInfoPage(props) {
                                 rows="10"
                                 placeholder="내용을 입력해 주세요."
                                 onChange={postChangeHandle}
+                                readOnly="readOnly"
                                 value={Post}/>
                             <div className="button">
-                            {User===props.auth.id ? <button>수정</button> : null }
-                                <button onClick={cancleHandle}>돌아가기</button>
-                                <button onClick={deleteHandle}>삭제</button>
+                            {User===props.auth.id ? <button onClick={onClickUpdateHandle}>수정</button> : null }
+                                <button onClick={onClcikDeleteHandle}>삭제</button>
+                                
+                                <button onClick={onClickCancleHandle}>목록</button>
                             </div>
-                        </form>
                     </div>
                     <div className="comment-div-in-postInfoPage">
                         <CommentsPage comments={Comments} post_id={props.match.params.id} auth={props.auth} changeComments={changeComments}/>
@@ -117,7 +103,7 @@ function PostInfoPage(props) {
                                 value={Post}
                                 readOnly="readOnly"/>
                             <div className="button">
-                                <button onClick={cancleHandle}>돌아가기</button>
+                                <button onClick={onClickCancleHandle}>목록</button>
                             </div>
                     </div>
                     <div className="comment-div-in-postInfoPage">

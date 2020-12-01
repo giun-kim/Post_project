@@ -44,7 +44,7 @@ function PostListPage(props){
             return null;
         }
     }
-    return(Posts.length !=0 ? (
+    return(Posts.length !==0 ? (
         <div className="container">
             <Items Posts={currentPosts} loading={Loading}/>
             <Pagenation postsPerPage={PostsPerPage} currentPage = {CurrentPage} totalPosts={Posts.length} paginate={paginate} />

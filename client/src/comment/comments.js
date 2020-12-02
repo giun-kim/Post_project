@@ -1,12 +1,12 @@
 import React,{useState,useEffect} from 'react'
 import axios from 'axios'
 import './comments.css'
-import {withRouter} from 'react-router-dom';
 
 function Comments(props) {
     const [CreateComment, setCreateComment] = useState('')
     const [Comments, setComments] = useState([])
     const [GetComments, setGetComments] = useState(false)
+
     useEffect(() => {
         setComments(props.comments)
     }, [])
@@ -19,7 +19,7 @@ function Comments(props) {
         return () => {
             setGetComments(false)
         }
-    }, [GetComments])
+    }, [GetComments]) // 댓글 정보가 변경 되었을 때 (새로 만들기, 수정, 삭제 시)
     const commentCreateHandle = ()=> {
         const body = {
             user_id : props.auth.id,
@@ -108,4 +108,4 @@ function Comments(props) {
     )
 }
 
-export default withRouter(Comments)
+export default Comments

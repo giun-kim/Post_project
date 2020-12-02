@@ -19,7 +19,7 @@ function PostInfoPage(props) {
                 setPost(res.data.post.post)
                 setComments(res.data.comments)
                 setUser(res.data.post.user_id)
-                
+                // 로그인 유저가 현재 게시글 작성자인지 또는 관리자인지
                 if(res.data.post.user_id===props.auth.id || props.auth.isAdmin){
                     setIsLogin(true)
                 }else{

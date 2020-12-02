@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react'
 import axios from 'axios';
-import {withRouter, Link} from 'react-router-dom'
+import {Link} from 'react-router-dom'
 import './navigation.css'
 
 function Navigation() {
@@ -64,4 +64,4 @@ function Navigation() {
 
 }
 
-export default withRouter(Navigation)
+export default Navigation

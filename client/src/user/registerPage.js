@@ -1,6 +1,5 @@
 import axios from 'axios';
 import React,{useState} from 'react'
-import {withRouter} from 'react-router-dom';
 
 function RegisterPage(props) {
     const [Email, setEmail] = useState("")
@@ -62,4 +61,4 @@ function RegisterPage(props) {
     )
 }
 
-export default withRouter(RegisterPage)
+export default RegisterPage

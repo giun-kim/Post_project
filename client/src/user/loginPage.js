@@ -1,6 +1,5 @@
 import React,{useState} from 'react'
 import axios from 'axios'
-import {withRouter} from 'react-router-dom';
 
 function LoginPage(props) {
     const [Email, setEmail] = useState("")
@@ -21,7 +20,6 @@ function LoginPage(props) {
         axios.post('/users/login', body)
         .then(res=>{
             if(res.data.loginSuccess){
-                // props.history.push('/');
                 window.location.replace('/');
             }else{
                 alert('Login Failed');
@@ -43,4 +41,4 @@ function LoginPage(props) {
     )
 }
 
-export default withRouter(LoginPage)
+export default LoginPage

@@ -20,8 +20,11 @@ function PostListPage(props){
             setLoading(false)
         })
     }, []);
+    // 현재 페이지 * 한 페이지에 나타낼 게시글 수
     const indexOfLastPost = CurrentPage * PostsPerPage;
+    // 현재 페이지의 마지막 게시글 수 - 한 페이지에 나타낼 게시글 수
     const indexOfFirstPost = indexOfLastPost - PostsPerPage;
+    // 현재 페이지 게시글
     const currentPosts = Posts.slice(indexOfFirstPost, indexOfLastPost);
     const paginate = (pageNumber) => {
         if(pageNumber===0){
@@ -60,4 +63,4 @@ function PostListPage(props){
         ))
 }
 
-export default withRouter(PostListPage);
+export default withRouter(PostListPage)

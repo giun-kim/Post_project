@@ -5,7 +5,7 @@ function Main() {
     return (
         <div className="container">
             <div className="div-gif">
-                <h1>main page</h1>
+                <h1>Main Page</h1>
             </div>
         </div>
     )

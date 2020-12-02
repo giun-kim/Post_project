@@ -9,10 +9,8 @@ var postRouter = require('./routes/posts');
 var sequelize = require('./models').sequelize;
 
 var app = express();
-app.use(express.json())
+app.use(express.json()) // body-parser 기능이 포함되어 있음
 sequelize.sync();
-
-app.set('view engine', 'jade');
 
 app.use(cookieParser());
 

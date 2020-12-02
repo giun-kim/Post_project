@@ -16,7 +16,7 @@ export default function (SpecificComponent, option = null, adminRoute = null) {
         }, [])
 
         if(Data.length !==0 && option ===null){
-            return <SpecificComponent auth={Data}/>
+            return <SpecificComponent auth={Data} prop={props}/>
         }
         return null
     }

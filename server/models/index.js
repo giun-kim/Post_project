@@ -15,6 +15,8 @@ db.User = require('./user')(sequelize, Sequelize);
 db.Post = require('./post')(sequelize, Sequelize);
 db.Comment = require('./comment')(sequelize, Sequelize);
 
+
+// 관계 설정
 db.User.hasMany(db.Post, {foreignKey:'user_id', sourceKey:'id'});
 db.Post.belongsTo(db.User, {foreignKey:'user_id', targetKey:'id'});
 

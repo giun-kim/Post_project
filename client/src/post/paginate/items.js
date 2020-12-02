@@ -5,7 +5,7 @@ function Items(props) {
     if(props.loading) return <h2>Loading...</h2>
 
     const handleInfoPage = (e)=>{
-        const params= e.currentTarget.getAttribute('data-msg');
+        const params= e.currentTarget.getAttribute('data-msg'); // 게시글 번호(key) 가져오기
         if(params === null) return alert('params is null')
         props.history.push('/post/info/'+params)
     }

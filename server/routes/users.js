@@ -10,6 +10,7 @@ router.get('/', function (req, res, next) {
     res.send('respond with a resource');
 });
 
+// 회원가입
 router.post('/register', (req, res) => {
     console.log('register router', req.body)
     User
@@ -24,13 +25,12 @@ router.post('/register', (req, res) => {
                 res.json({registerSuccess: false, message:'이메일 중복'})
 
             } else {
+                // 비밀번호 암호화
                 middlewares.passwordToHashing(req.body.password,(err, hashinPassword)=>{
-                    console.log('success to hashing')
-                    if(err) console.log('err', err)
+                    if(err) res.json({registerSuccess: false, error:err})
                     User.create(
                         {email: req.body.email, password: hashinPassword, name: req.body.name}
                     );
-                    console.log('회원가입 성공');
                     res.json({registerSuccess: true})
                 });
                 
@@ -38,8 +38,8 @@ router.post('/register', (req, res) => {
             }
         })
 })
+// 로그인
 router.post('/login', (req, res) => {
-    console.log('login', req.body);
     User.findOne({
         where:{
             email:req.body.email
@@ -48,15 +48,15 @@ router.post('/login', (req, res) => {
         console.log(user)
         if(user===null) return res.json({loginSuccess:false, message:'이메일 오류'})
 
+        // 비밀번호 확인
         middlewares.comparePassword(req.body.email, req.body.password, (err, isMatch)=>{
-            console.log(isMatch)
             if(!isMatch) return res.json({loginSuccess:false, message:'비밀번호 오류'})
+            // 로그인 정보가 일치할 시 토근 생성
             middlewares.generateToken(user, (err, token)=>{
                 if(err===false || token===null){
-                    console.log('토큰 생성 실패')
                     res.json({loginSuccess:false, message:'토큰 생성 실패'})
                 }else{
-                    console.log('토큰 생성 성공', token)
+                    // 생성된 토큰을 x_auth 이름으로 된 쿠기 생성
                     res.cookie("x_auth", token).json({loginSuccess:true})
                 }
             })
@@ -64,9 +64,10 @@ router.post('/login', (req, res) => {
     })
 })
 
+// 로그인 인증
+// 해당 라우터로 들어오면 middlewares.auth 로 이동
 router.get('/auth',auth,  (req, res)=>{
-    console.log('auth router')
-    res.json({
+    res.json({ // 로그인 된 유저 정보 담기
         id:req.user.id,
         isAdmin:req.user.role === 0 ? false : true,
         isAuth:true,
@@ -76,14 +77,12 @@ router.get('/auth',auth,  (req, res)=>{
     })
 })
 
+// 로그아웃
 router.get('/logout', auth, (req, res)=>{
-    console.log('logout router')
-    console.log(req.token)
-    User.update({token:""}, {where:{id:req.user.id}})
+    User.update({token:""}, {where:{id:req.user.id}}) // 해당 유저 토큰 초기화
     .then(user=>{
         if(!user) return res.json({logoutSuccess:false});
-        console.log('로그아웃 성공')
-        return res.json({logoutSuccess:true})
+        return res.clearCookie('x_auth').json({logoutSuccess:true}) //  등록된 쿠키 삭제
     })
 })
 

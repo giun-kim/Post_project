@@ -8,16 +8,16 @@ var User = require('../models').User;
 var {nowDate} = require('./middlewares')
 
 /* GET users listing. */
-router.get('/list', function (req, res, next) {
+router.get('/list', function (req, res, next) { // 게시글 리스트
     Post.findAll({
         order:[['date', 'DESC'], ['id', 'DESC']],
-        include:[
+        include:[ // INNER JOIN
           {
-          model:User,
-          attributes:['name']
+          model:User, 
+          attributes:['name'],
+          required:true // 없거나 false(기본값)일 경우 Post 기준 LEFT JOIN과 같은 결과
           }
-        ],
-        required:true,
+        ]
     })
     .then(posts => {
       console.log('#!@#: ', posts)
@@ -25,7 +25,7 @@ router.get('/list', function (req, res, next) {
   })
 });
 
-router.post('/create', (req, res)=> {
+router.post('/create', (req, res)=> { // 게시글 생성
     Post.create({
       user_id:req.body.user_id,
       post: req.body.post,
@@ -42,27 +42,27 @@ router.post('/create', (req, res)=> {
     })
 })
 
-router.get('/info/:id', (req, res)=>{
+router.get('/info/:id', (req, res)=>{ // 게시글 보기 클릭
   console.log('dfjalkfdjl;a')
   console.log(req.params.id)
 
-  Post.findOne({where:{id:req.params.id}})
+  Post.findOne({where:{id:req.params.id}}) // 해당 게시글 select
   .then(post=>{
     console.log(post);
     Post.update({
       view_count :post.view_count+1
     },
       {where:{id:req.params.id}});
-      Comment.findAll({
+      Comment.findAll({ // 
         where:{post_id:post.id},
         order:[['date', 'DESC'], ['id', 'DESC']],
         include:[
           {
           model:User,
-          attributes:['name']
+          attributes:['name'],
+          required:true
           }
-        ],
-        required:true,
+        ]
       })
     .then(comments=>{
       res.json({post:post, comments:comments})
@@ -70,7 +70,7 @@ router.get('/info/:id', (req, res)=>{
   })
 })
 
-router.post('/update/:id', (req, res)=>{
+router.post('/update/:id', (req, res)=>{ // 게시글 수정
   console.log('update', req.params.id);
   console.log('data', req.body)
   Post.update({
@@ -86,7 +86,7 @@ router.post('/update/:id', (req, res)=>{
   })
 })
 
-router.delete('/delete/:id', (req, res)=>{
+router.delete('/delete/:id', (req, res)=>{ // 게시글 삭제
   console.log('delete', req.params.id);
   Post.destroy({
       where:
@@ -100,7 +100,7 @@ router.delete('/delete/:id', (req, res)=>{
 })
 
 
-router.post('/comment/create', (req, res)=>{
+router.post('/comment/create', (req, res)=>{ // 댓글 생성
   Comment.create({
     user_id:req.body.user_id,
     comment:req.body.comment,
@@ -112,7 +112,7 @@ router.post('/comment/create', (req, res)=>{
   })
 })
 
-router.post('/comment/update/:id', (req, res)=>{
+router.post('/comment/update/:id', (req, res)=>{ // 댓글 수정
   Comment.update({
     comment: req.body.comment
   },{
@@ -123,7 +123,7 @@ router.post('/comment/update/:id', (req, res)=>{
   })
 })
 
-router.delete('/comment/delete/:id', (req, res)=>{
+router.delete('/comment/delete/:id', (req, res)=>{ // 댓글 삭제
   Comment.destroy({
     where:{id:req.params.id}
   })
@@ -131,17 +131,17 @@ router.delete('/comment/delete/:id', (req, res)=>{
     res.json({success:true})
   })
 })
-router.get('/comment/:id', (req, res)=>{
+router.get('/comment/:id', (req, res)=>{ // 댓글 가져오기 (생성, 수정, 삭제 시)
   Comment.findAll({
     where:{post_id:req.params.id},
     order:[['date', 'DESC'], ['id', 'DESC']],
     include:[
       {
       model:User,
-      attributes:['name']
+      attributes:['name'],
+      required:true
       }
-    ],
-    required:true,
+    ]
   })
   .then(comments=>{
     res.json({comments:comments})

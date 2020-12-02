@@ -3,10 +3,13 @@ import axios from 'axios';
 import {withRouter} from 'react-router-dom';
 
 function PostCreateAndUpdatePage(props) {
+    console.log(props)
     const [Title, setTitle] = useState('')
     const [Post, setPost] = useState('')
 
     useEffect(() => {
+        // props.match.params.id === undefined = 새로 만들기로 든어온 경우
+        // props.match.params.id 값이 있을 경우 = 게시글 수정을 통해 들어온 경우
         if(props.match.params.id !== undefined){
             setTitle(props.history.location.state.title)
             setPost(props.history.location.state.post)
@@ -20,6 +23,8 @@ function PostCreateAndUpdatePage(props) {
     }
     const onCreateSubmitHandle = (e) => {
         e.preventDefault();
+        if(Title.length<=0) return alert('제목을 입력해 주세요')
+        if(Post.length<=0) return alert('내용을 입력해주세요.')
         let body = {
             title: Title,
             post: Post,
@@ -39,6 +44,8 @@ function PostCreateAndUpdatePage(props) {
     }
     const onUpdateSubmitHandle = (e) => {
         e.preventDefault();
+        if(Title.length<=0) return alert('제목을 입력해 주세요')
+        if(Post.length<=0) return alert('내용을 입력해주세요.')
         let body = {
             title: Title,
             post: Post,

@@ -1,12 +1,12 @@
-# [게시판] Post_project
-node.js express + react + mysql 을 사용한 CRUD & 로그인 구현  
-  
+# [掲示板] Post_project
+node.js express + react + mysqlを使ったCRUD＆ログインの具現 　
+
 # version
 react - 17.0.1    
 express - 4.16.1  
 node.js - 12.16.3  
 
-# 사용 라이브러리
+# 使用ライブラリー
 - ### node.js express
 jsonwebtoken  
 mysql2  
@@ -17,18 +17,18 @@ react-router-dom
 axios  
 concurrently  
 
-#### proxy 설정
+#### proxy 設定
 ```
 /client/package.json
 {
  "dependencies":{ ...},
  "scripts":{...},
- "proxy":"url" // proxy 설정
+ "proxy":"url" // proxy 設定
 }
 ```
 
 
-#### 실행 방법
+#### 実行方法
 ```
 git clone https://github.com/giun-kim/Post_project.git
 cd server

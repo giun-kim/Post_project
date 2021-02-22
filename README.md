@@ -37,7 +37,7 @@ cd client
 npm install
 
 /post_project/client
-npm start dev // 서버, 클라이언트 동시 실행 (concurrently 라이브러리)
+npm start dev // サーバー、クライアント同時実行（concurrentlyライブラリー）
 ```
 
 # 参考資料
